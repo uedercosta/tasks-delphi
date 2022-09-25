@@ -1,0 +1,74 @@
+object Form1: TForm1
+  Left = 618
+  Height = 408
+  Top = 202
+  Width = 320
+  Caption = 'Form1'
+  ClientHeight = 388
+  ClientWidth = 320
+  Menu = MainMenu1
+  LCLVersion = '2.2.0.4'
+  object Button1: TButton
+    Left = 16
+    Height = 25
+    Top = 8
+    Width = 75
+    Caption = 'Button1'
+    OnClick = Button1Click
+    TabOrder = 0
+  end
+  object ZConnection1: TZConnection
+    ControlsCodePage = cCP_UTF8
+    AutoEncodeStrings = True
+    Catalog = 'public'
+    Properties.Strings = (
+      'AutoEncodeStrings=True'
+      'controls_cp=CP_UTF8'
+    )
+    Connected = True
+    AfterConnect = ZConnection1AfterConnect
+    SQLHourGlass = True
+    HostName = 'localhost'
+    Port = 5432
+    Database = 'db_tasks'
+    User = 'postgres'
+    Password = '1234'
+    Protocol = 'postgresql'
+    LibraryLocation = 'C:\Program Files (x86)\PostgreSQL\10\bin\libpq.dll'
+    Left = 24
+    Top = 48
+  end
+  object MainMenu1: TMainMenu
+    Left = 256
+    Top = 8
+    object MenuItem1: TMenuItem
+      Caption = '&Cadastros'
+      object MenuItem2: TMenuItem
+        Action = acTarefas
+      end
+      object MenuItem3: TMenuItem
+        Action = acUsuarios
+      end
+      object Separator1: TMenuItem
+        Caption = '-'
+      end
+      object MenuItem5: TMenuItem
+        Action = acSair
+      end
+    end
+  end
+  object ActionList1: TActionList
+    Left = 256
+    Top = 72
+    object acTarefas: TAction
+      Caption = 'T&arefas'
+    end
+    object acUsuarios: TAction
+      Caption = '&Usuários'
+      OnExecute = acUsuariosExecute
+    end
+    object acSair: TAction
+      Caption = '&Sair'
+    end
+  end
+end

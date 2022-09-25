@@ -1,0 +1,8 @@
+object FrmCadTarefas: TFrmCadTarefas
+  Left = 550
+  Height = 240
+  Top = 297
+  Width = 320
+  Caption = 'FrmCadTarefas'
+  LCLVersion = '2.2.0.4'
+end
