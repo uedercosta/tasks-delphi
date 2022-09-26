@@ -18,10 +18,12 @@
         <Filename Value="Views\views.menuprincipal.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Form1"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Views.MenuPrincipal"/>
-        <TopLine Value="54"/>
-        <CursorPos X="34" Y="9"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="58"/>
+        <CursorPos X="12" Y="71"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -30,19 +32,18 @@
         <Filename Value="Interfaces\interfaces.iconexao.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Interfaces.iConexao"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="13"/>
-        <CursorPos X="5" Y="19"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="20"/>
+        <CursorPos X="14" Y="20"/>
         <UsageCount Value="20"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="Models\Conexao\models.conexao.modelconexao.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Models.Conexao.ModelConexao"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="87"/>
-        <CursorPos Y="109"/>
+        <TopLine Value="157"/>
+        <CursorPos X="25" Y="186"/>
         <UsageCount Value="20"/>
       </Unit>
       <Unit>
@@ -62,9 +63,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Views.Cadastros.Usuario"/>
         <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="131"/>
-        <CursorPos Y="143"/>
+        <TopLine Value="206"/>
+        <CursorPos X="13" Y="155"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -73,19 +73,54 @@
         <Filename Value="Models\Entidades\models.entity.usuario.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Models.Entity.Usuario"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="140"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="122"/>
         <CursorPos X="28" Y="131"/>
         <UsageCount Value="20"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="Models\Query\models.query.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Models.Query"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="35"/>
-        <CursorPos X="4" Y="47"/>
+        <TopLine Value="91"/>
+        <CursorPos X="20" Y="111"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Util\utils.util.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Utils.Util"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="29" Y="16"/>
+        <UsageCount Value="20"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Factorys\factory.conexao.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Factory.Conexao"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="9"/>
+        <CursorPos X="3" Y="18"/>
+        <UsageCount Value="20"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Factorys\factory.query.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Factory.Query"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="30"/>
+        <CursorPos Y="47"/>
+        <UsageCount Value="20"/>
+      </Unit>
+      <Unit>
+        <Filename Value="DAOs\dao.usuario.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="DAO.Usuario"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="37"/>
+        <CursorPos X="21" Y="79"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
       </Unit>
@@ -93,123 +128,123 @@
     <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="Views\Cadastros\views.cadastros.usuario.pas"/>
-        <Caret Line="155" TopLine="144"/>
+        <Caret Line="164" Column="24" TopLine="154"/>
       </Position>
       <Position>
         <Filename Value="Views\Cadastros\views.cadastros.usuario.pas"/>
-        <Caret Line="157" TopLine="144"/>
+        <Caret Line="300" TopLine="280"/>
       </Position>
       <Position>
         <Filename Value="Views\Cadastros\views.cadastros.usuario.pas"/>
-        <Caret Line="158" TopLine="144"/>
+        <Caret Line="301" TopLine="280"/>
       </Position>
       <Position>
         <Filename Value="Views\Cadastros\views.cadastros.usuario.pas"/>
-        <Caret Line="159" TopLine="144"/>
+        <Caret Line="299" TopLine="280"/>
       </Position>
       <Position>
         <Filename Value="Views\Cadastros\views.cadastros.usuario.pas"/>
-        <Caret Line="160" TopLine="144"/>
+        <Caret Line="302" TopLine="280"/>
       </Position>
       <Position>
         <Filename Value="Views\Cadastros\views.cadastros.usuario.pas"/>
-        <Caret Line="161" TopLine="144"/>
+        <Caret Line="165" TopLine="153"/>
       </Position>
       <Position>
         <Filename Value="Views\Cadastros\views.cadastros.usuario.pas"/>
-        <Caret Line="155" TopLine="144"/>
+        <Caret Line="300" TopLine="280"/>
       </Position>
       <Position>
         <Filename Value="Views\Cadastros\views.cadastros.usuario.pas"/>
-        <Caret Line="162" TopLine="144"/>
+        <Caret Line="301" TopLine="280"/>
       </Position>
       <Position>
         <Filename Value="Views\Cadastros\views.cadastros.usuario.pas"/>
-        <Caret Line="236" TopLine="223"/>
+        <Caret Line="299" TopLine="280"/>
       </Position>
       <Position>
         <Filename Value="Views\Cadastros\views.cadastros.usuario.pas"/>
-        <Caret Line="237" TopLine="223"/>
+        <Caret Line="300" TopLine="280"/>
       </Position>
       <Position>
         <Filename Value="Views\Cadastros\views.cadastros.usuario.pas"/>
-        <Caret Line="238" TopLine="223"/>
+        <Caret Line="132" TopLine="120"/>
       </Position>
       <Position>
         <Filename Value="Views\Cadastros\views.cadastros.usuario.pas"/>
-        <Caret Line="239" TopLine="223"/>
+        <Caret Line="145" TopLine="134"/>
       </Position>
       <Position>
         <Filename Value="Views\Cadastros\views.cadastros.usuario.pas"/>
-        <Caret Line="240" TopLine="223"/>
+        <Caret Line="151" TopLine="134"/>
       </Position>
       <Position>
         <Filename Value="Views\Cadastros\views.cadastros.usuario.pas"/>
-        <Caret Line="242" TopLine="223"/>
+        <Caret Line="150" TopLine="134"/>
       </Position>
       <Position>
         <Filename Value="Views\Cadastros\views.cadastros.usuario.pas"/>
-        <Caret Line="243" TopLine="223"/>
+        <Caret Line="149" TopLine="134"/>
       </Position>
       <Position>
         <Filename Value="Views\Cadastros\views.cadastros.usuario.pas"/>
-        <Caret Line="244" TopLine="224"/>
+        <Caret Line="148" TopLine="134"/>
       </Position>
       <Position>
         <Filename Value="Views\Cadastros\views.cadastros.usuario.pas"/>
-        <Caret Line="245" TopLine="225"/>
+        <Caret Line="146" TopLine="134"/>
       </Position>
       <Position>
         <Filename Value="Views\Cadastros\views.cadastros.usuario.pas"/>
-        <Caret Line="246" TopLine="226"/>
+        <Caret Line="147" TopLine="134"/>
       </Position>
       <Position>
         <Filename Value="Views\Cadastros\views.cadastros.usuario.pas"/>
-        <Caret Line="247" TopLine="227"/>
+        <Caret Line="155" Column="10" TopLine="137"/>
       </Position>
       <Position>
         <Filename Value="Views\Cadastros\views.cadastros.usuario.pas"/>
-        <Caret Line="249" TopLine="229"/>
+        <Caret Line="301" TopLine="281"/>
       </Position>
       <Position>
         <Filename Value="Views\Cadastros\views.cadastros.usuario.pas"/>
-        <Caret Line="250" TopLine="230"/>
+        <Caret Line="299" Column="26" TopLine="281"/>
       </Position>
       <Position>
         <Filename Value="Views\Cadastros\views.cadastros.usuario.pas"/>
-        <Caret Line="251" TopLine="231"/>
+        <Caret Line="58" Column="33" TopLine="39"/>
+      </Position>
+      <Position>
+        <Filename Value="DAOs\dao.usuario.pas"/>
+        <Caret Line="26" Column="58" TopLine="15"/>
+      </Position>
+      <Position>
+        <Filename Value="DAOs\dao.usuario.pas"/>
+        <Caret Line="20" TopLine="20"/>
+      </Position>
+      <Position>
+        <Filename Value="DAOs\dao.usuario.pas"/>
+        <Caret Line="36" Column="29" TopLine="27"/>
+      </Position>
+      <Position>
+        <Filename Value="DAOs\dao.usuario.pas"/>
+        <Caret Line="35" Column="13" TopLine="18"/>
       </Position>
       <Position>
         <Filename Value="Views\Cadastros\views.cadastros.usuario.pas"/>
-        <Caret Line="252" TopLine="232"/>
+        <Caret Line="290" Column="38" TopLine="284"/>
       </Position>
       <Position>
         <Filename Value="Views\Cadastros\views.cadastros.usuario.pas"/>
-        <Caret Line="142" TopLine="130"/>
+        <Caret Line="253" Column="7" TopLine="241"/>
       </Position>
       <Position>
         <Filename Value="Views\Cadastros\views.cadastros.usuario.pas"/>
-        <Caret Line="56" TopLine="51"/>
+        <Caret Line="50" Column="47" TopLine="221"/>
       </Position>
       <Position>
         <Filename Value="Views\Cadastros\views.cadastros.usuario.pas"/>
-        <Caret Line="300" Column="47" TopLine="276"/>
-      </Position>
-      <Position>
-        <Filename Value="Views\Cadastros\views.cadastros.usuario.pas"/>
-        <Caret Line="143" TopLine="131"/>
-      </Position>
-      <Position>
-        <Filename Value="Views\Cadastros\views.cadastros.usuario.pas"/>
-        <Caret Line="237" TopLine="225"/>
-      </Position>
-      <Position>
-        <Filename Value="Views\Cadastros\views.cadastros.usuario.pas"/>
-        <Caret Line="143" TopLine="131"/>
-      </Position>
-      <Position>
-        <Filename Value="Views\Cadastros\views.cadastros.usuario.pas"/>
-        <Caret Line="237" TopLine="225"/>
+        <Caret Line="60" TopLine="47"/>
       </Position>
     </JumpHistory>
     <RunParams>
@@ -217,36 +252,4 @@
       <Modes ActiveMode=""/>
     </RunParams>
   </ProjectSession>
-  <Debugging>
-    <BreakPoints>
-      <Item>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="Views\Cadastros\views.cadastros.usuario.pas"/>
-        <Line Value="215"/>
-      </Item>
-      <Item>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="Views\Cadastros\views.cadastros.usuario.pas"/>
-        <Line Value="267"/>
-      </Item>
-      <Item>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="Views\Cadastros\views.cadastros.usuario.pas"/>
-        <Line Value="143"/>
-      </Item>
-      <Item>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="Views\Cadastros\views.cadastros.usuario.pas"/>
-        <Line Value="237"/>
-      </Item>
-    </BreakPoints>
-  </Debugging>
 </CONFIG>

@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, DB, Forms, Controls, Graphics, Dialogs, DBGrids, StdCtrls,
-  Buttons, EditBtn, Models.Entity.Usuario, ZDataSet;
+  Buttons, EditBtn, Models.Entity.Usuario, Utils.Util, DAO.Usuario;
 
 type
 
@@ -45,20 +45,18 @@ type
     procedure DBGrid1DblClick(Sender: TObject);
     procedure dsDadosDataChange(Sender: TObject; Field: TField);
     procedure FormCreate(Sender: TObject);
-    procedure FormShow(Sender: TObject);
   private
     procedure Limpar;
     procedure HabilitaBotoes(b1, b2: boolean);
-    procedure Inserir(aValue: iUsuario);
-    procedure Editar(aValue: iUsuario);
     procedure Excluir(aValue: integer);
-    function
+    function ConvertToModel(aValue: TDataSet): iUsuario;
     procedure ConverteParaView(aValue: TDataSet);
-
+    function GetId(aValue: TDataSet): integer;
+    procedure FormataCamposGrid;
   public
     FUsuario: iUsuario;
-    FDataSet: TZQuery;
     FId: integer;
+    FDAO: iUsuarioDAO;
   end;
 
 var
@@ -70,8 +68,6 @@ implementation
 
 { TFrmCadUsuarios }
 
-uses Views.MenuPrincipal;
-
 procedure TFrmCadUsuarios.btNovoClick(Sender: TObject);
 begin
   Limpar;
@@ -79,7 +75,7 @@ begin
   edNome.SetFocus;
   checkAtivo.Checked := True;
   edCriacao.Date := Date;
-  FDataSet.close;
+  FId := 0;
 end;
 
 procedure TFrmCadUsuarios.btExcluiClick(Sender: TObject);
@@ -113,24 +109,18 @@ begin
   end
   else
   begin
-    HabilitaBotoes(false, true);
-    ConverteParaView(dsdados.DataSet);
+    HabilitaBotoes(False, True);
+    ConverteParaView(dsDados.DataSet);
   end;
 end;
 
 procedure TFrmCadUsuarios.btPesquisaClick(Sender: TObject);
 begin
-  FDataSet.Close;
-  FDataSet.SQL.Clear;
-  FDataSet.SQL.Add('SELECT * FROM USUARIOS');
-  FDataSet.SQL.Add('WHERE 1 = 1 ');
-  if edPesquisa.Text <> '' then
-     FDataSet.SQL.Add('AND UPPER(NOME) LIKE ' + QuotedStr('%' + edPesquisa.Text + '%') );
-
-  FDataSet.SQL.Add('ORDER BY ID_USUARIO');
-
-  FDataSet.Open;
-  dsDados.DataSet := FDataSet;
+  if (trim(edPesquisa.Text) = '') then
+    FDAO.FindAll(dsDados)
+  else
+    FDAO.FindAll(edPesquisa.Text, dsDados);
+  FormataCamposGrid;
 end;
 
 procedure TFrmCadUsuarios.btSairClick(Sender: TObject);
@@ -142,27 +132,17 @@ procedure TFrmCadUsuarios.btSalvaClick(Sender: TObject);
 begin
   if (FId = 0) then
   begin
-    FUsuario
-      .DataCriacao(edCriacao.Date)
-      .Ativo(checkAtivo.Checked)
-      .Login(edLogin.Text)
-      .Senha(edSenha.Text)
-      .Nome(edNome.Text);
-    Inserir(FUsuario);
-    HabilitaBotoes(True, False);
+    FUsuario.DataCriacao(edCriacao.Date).Ativo(checkAtivo.Checked)
+      .Login(edLogin.Text).Senha(edSenha.Text).Nome(edNome.Text);
   end
   else
   begin
-    FUsuario
-      .Id(FId)
-      .DataCriacao(edCriacao.Date)
-      .Ativo(checkAtivo.Checked)
-      .Login(edLogin.Text)
-      .Senha(edSenha.Text)
-      .Nome(edNome.Text);
-    Editar(FUsuario);
-    HabilitaBotoes(True, False);
+    FUsuario.Id(FId).DataCriacao(edCriacao.Date).Ativo(checkAtivo.Checked)
+      .Login(edLogin.Text).Senha(edSenha.Text).Nome(edNome.Text);
   end;
+  FDAO.Save(FUsuario, dsDados);
+  HabilitaBotoes(True, False);
+  Limpar;
 end;
 
 procedure TFrmCadUsuarios.DBGrid1DblClick(Sender: TObject);
@@ -172,22 +152,17 @@ end;
 
 procedure TFrmCadUsuarios.dsDadosDataChange(Sender: TObject; Field: TField);
 begin
-  if not Dsdados.DataSet.IsEmpty then
-    FId := dsDados.DataSet.Fields[0].Value;
+  GetId(dsDados.DataSet);
 end;
 
 procedure TFrmCadUsuarios.FormCreate(Sender: TObject);
 begin
   FUsuario := TUsuario.New;
-  FDataSet := Form1.ZQuery1;
-  dsDados.DataSet := FDataSet;
+  FDAO := TDAOUsuario.New;
   FId := 0;
-end;
-
-procedure TFrmCadUsuarios.FormShow(Sender: TObject);
-begin
   Limpar;
   HabilitaBotoes(True, False);
+  FormataCamposGrid;
 end;
 
 procedure TFrmCadUsuarios.Limpar;
@@ -211,88 +186,53 @@ begin
   btPesquisa.Enabled := b1;
 end;
 
-procedure TFrmCadUsuarios.Inserir(aValue: iUsuario);
-begin
-  FDataSet.Close;
-  FDataSet.SQL.Clear;
-  FDataSet.SQL.Add('INSERT INTO USUARIOS (NOME, LOGIN, SENHA, ATIVO) ');
-  FDataSet.SQL.Add('VALUES ');
-  FDataSet.SQL.Add('(:NOME, :LOGIN, :SENHA, :ATIVO) ');
-
-  FDataSet.ParamByName('NOME').Value := aValue.Nome;
-  FDataSet.ParamByName('LOGIN').Value := aValue.Login;
-  FDataSet.ParamByName('SENHA').Value := aValue.Senha;
-  FDataSet.ParamByName('ATIVO').Value := aValue.Ativo;
-  FDataSet.ExecSQL;
-
-  FDataSet.Close;
-  FDataSet.SQL.Clear;
-  FDataSet.SQL.Add('SELECT * FROM USUARIOS ORDER BY ID_USUARIO');
-  FDataSet.Open;
-  dsDados.DataSet := FDataSet;
-end;
-
-procedure TFrmCadUsuarios.Editar(aValue: iUsuario);
-begin
-  FDataSet.Close;
-  FDataSet.SQL.Clear;
-  FDataSet.SQL.Add('UPDATE USUARIOS SET');
-  FDataSet.SQL.Add('NOME = :NOME, LOGIN = :LOGIN, SENHA = :SENHA, ATIVO = :ATIVO ');
-  FDataSet.SQL.Add('WHERE ID_USUARIO = :ID');
-
-  FDataSet.ParamByName('ID').Value := aValue.Id;
-  FDataSet.ParamByName('NOME').Value := aValue.Nome;
-  FDataSet.ParamByName('LOGIN').Value := aValue.Login;
-  FDataSet.ParamByName('SENHA').Value := aValue.Senha;
-  FDataSet.ParamByName('ATIVO').Value := aValue.Ativo;
-  FDataSet.ExecSQL;
-
-  FDataSet.Close;
-  FDataSet.SQL.Clear;
-  FDataSet.SQL.Add('SELECT * FROM USUARIOS ORDER BY ID_USUARIO');
-  FDataSet.Open;
-  dsDados.DataSet := FDataSet;
-
-end;
-
 procedure TFrmCadUsuarios.Excluir(aValue: integer);
 begin
-  if (aValue < 1) then
+  if MessageDlg('Confirma a exclusão do registro ?', mtConfirmation,
+    [mbYes, mbNo], 0) = mrYes then
   begin
-    ShowMessage('Codigo invalido...');
-    btEdita.SetFocus;
-  end
-  else
-  begin
-    FDataSet.Close;
-    FDataSet.SQL.Clear;
-    FDataSet.SQL.Add('DELETE FROM USUARIOS WHERE ID_USUARIO = :ID');
-    FDataSet.ParamByName('ID').Value := aValue;
-    FDataSet.ExecSQL;
-
-    FDataSet.Close;
-    FDataSet.SQL.Clear;
-    FDataSet.SQL.Add('SELECT * FROM USUARIOS ORDER BY ID_USUARIO');
-    FDataSet.Open;
-    dsDados.DataSet := FDataSet;
+    FDAO.Delete(aValue, dsDados);
+    FormataCamposGrid;
   end;
+end;
+
+function TFrmCadUsuarios.ConvertToModel(aValue: TDataSet): iUsuario;
+begin
+  Result := FUsuario.Ativo(aValue.FieldByName('ATIVO').AsInteger)
+    .DataCriacao(aValue.FieldByName('DATA_CRIACAO').AsDateTime)
+    .Id(aValue.FieldByName('ID_USUARIO').Value)
+    .Login(aValue.FieldByName('LOGIN').Value).Nome(aValue.FieldByName('NOME').Value)
+    .Senha(aValue.FieldByName('SENHA').Value);
 end;
 
 procedure TFrmCadUsuarios.ConverteParaView(aValue: TDataSet);
 begin
-  FUsuario
-    .Ativo(aValue.FieldByName('ATIVO').AsInteger)
-    .DataCriacao(aValue.FieldByName('DATA_CRIACAO').AsDateTime)
-    .Id(aValue.FieldByName('ID_USUARIO').Value)
-    .Login(aValue.FieldByName('LOGIN').Value)
-    .Nome(aValue.FieldByName('NOME').Value)
-    .Senha(aValue.FieldByName('SENHA').Value);
-  edLogin.text:= FUsuario.Login;
-  edNome.text:= FUsuario.Nome;
-  edSenha.text:= FUsuario.Senha;
-  if Fusuario.Ativo = 0 then checkAtivo.Checked := false else checkAtivo.Checked:=true;
-  edCriacao.Date:= FUsuario.DataCriacao;
-  lblCodigo.Caption := FUsuario.Id.ToString;
+  ConvertToModel(aValue);
+  edLogin.Text := FUsuario.Login;
+  edNome.Text := FUsuario.Nome;
+  edSenha.Text := FUsuario.Senha;
+  if FUsuario.Ativo = 0 then checkAtivo.Checked := False
+  else
+    checkAtivo.Checked := True;
+  edCriacao.Date := FUsuario.DataCriacao;
+  lblCodigo.Caption := StrZero(FUsuario.Id, 6);
+end;
+
+
+function TFrmCadUsuarios.GetId(aValue: TDataSet): integer;
+begin
+  if not aValue.IsEmpty then
+    FId := aValue.Fields[0].Value;
+end;
+
+procedure TFrmCadUsuarios.FormataCamposGrid;
+begin
+  DBGrid1.columns[0].FieldName := 'ID_USUARIO';
+  DBGrid1.columns[1].FieldName := 'NOME';
+  DBGrid1.columns[2].FieldName := 'ATIVO';
+  DBGrid1.columns[0].Width := 64;
+  DBGrid1.columns[1].Width := 210;
+  DBGrid1.columns[2].Width := 40;
 end;
 
 end.

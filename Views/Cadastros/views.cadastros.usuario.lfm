@@ -2,21 +2,37 @@ object FrmCadUsuarios: TFrmCadUsuarios
   Left = 340
   Height = 240
   Top = 237
-  Width = 669
+  Width = 674
   Caption = 'Cadastro de Usuários'
   ClientHeight = 240
-  ClientWidth = 669
+  ClientWidth = 674
   OnCreate = FormCreate
-  OnShow = FormShow
   LCLVersion = '2.2.0.4'
   object DBGrid1: TDBGrid
     Left = 320
     Height = 192
     Top = 40
-    Width = 344
+    Width = 347
+    AlternateColor = clSilver
     Color = clWindow
-    Columns = <>
+    Columns = <    
+      item
+        Title.Alignment = taCenter
+        Title.Caption = 'Id'
+        DisplayFormat = '000000'
+      end    
+      item
+        Title.Caption = 'Nome'
+        Width = 210
+      end    
+      item
+        Title.Alignment = taCenter
+        Title.Caption = 'Ativo'
+        Width = 40
+      end>
     DataSource = dsDados
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+    ReadOnly = True
     TabOrder = 0
     OnDblClick = DBGrid1DblClick
   end
@@ -24,13 +40,13 @@ object FrmCadUsuarios: TFrmCadUsuarios
     Left = 376
     Height = 23
     Top = 9
-    Width = 208
+    Width = 214
     CharCase = ecUppercase
     TabOrder = 1
     TextHint = 'Informe o nome do usuário'
   end
   object btPesquisa: TBitBtn
-    Left = 588
+    Left = 592
     Height = 30
     Top = 2
     Width = 75
@@ -190,7 +206,6 @@ object FrmCadUsuarios: TFrmCadUsuarios
     TabOrder = 13
   end
   object dsDados: TDataSource
-    DataSet = Form1.ZQuery1
     OnDataChange = dsDadosDataChange
     Left = 414
     Top = 126

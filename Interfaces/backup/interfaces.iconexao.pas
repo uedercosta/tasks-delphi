@@ -16,8 +16,9 @@ type
     function Open: iConexao;
     function Commit: iConexao;
     function RollBack: iConexao;
-    function AddParams(aValue: iConexaoConfig): iConexao;
+    function AddParams: iConexaoConfig;
     function EndConexao: iConexao;
+
   end;
 
   iConexaoConfig = interface

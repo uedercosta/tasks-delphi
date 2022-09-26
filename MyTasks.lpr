@@ -12,7 +12,8 @@ uses
   Interfaces, // this includes the LCL widgetset
   Forms, zcomponent, Views.MenuPrincipal, Interfaces.iConexao,
   Models.Conexao.ModelConexao, Views.Cadastros.Tarefa, Views.Cadastros.Usuario,
-  Models.Entity.Usuario, Models.Query
+  Models.Entity.Usuario, Models.Query, Utils.Util, Factory.Conexao, 
+Factory.Query, DAO.Usuario
   { you can add units after this };
 
 {$R *.res}
@@ -22,8 +23,6 @@ begin
   Application.Scaled:=True;
   Application.Initialize;
   Application.CreateForm(TForm1, Form1);
-  Application.CreateForm(TFrmCadTarefas, FrmCadTarefas);
-  Application.CreateForm(TFrmCadUsuarios, FrmCadUsuarios);
   Application.Run;
 end.
 

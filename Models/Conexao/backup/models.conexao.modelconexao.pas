@@ -9,8 +9,6 @@ uses
 
 type
 
-  { Conexao }
-
   { TConexao }
 
   TConexao = class(TInterfacedObject, iConexao, iConexaoConfig)
@@ -33,7 +31,7 @@ type
     function Commit: iConexao;
     function RollBack: iConexao;
     function AddParams: iConexaoConfig;
-    function EndConexao: iConexao;
+    function EndConexao: TComponent;
 
     function Catalog(aValue: string): iConexaoConfig; overload;
     function Catalog: string; overload;
@@ -75,7 +73,7 @@ end;
 function TConexao.Close: iConexao;
 begin
   Result := self;
-  FConexao.Close;
+  FConexao.Disconnect;
 end;
 
 function TConexao.Open: iConexao;
@@ -99,18 +97,11 @@ end;
 function TConexao.AddParams: iConexaoConfig;
 begin
   Result := self;
-  FConexao.Catalog := FCatalog;
-  FConexao.Database := FDataBase;
-  FConexao.HostName := FHostName;
-  FConexao.Password := FPassWord;
-  FConexao.Port := FPort;
-  FConexao.Protocol := FProtocol;
-  FConexao.User := FUser;
 end;
 
-function TConexao.EndConexao: iConexao;
+function TConexao.EndConexao: TComponent;
 begin
-  Result := self;
+  Result := FConexao;
 end;
 
 function TConexao.Catalog(aValue: string): iConexaoConfig;
@@ -190,9 +181,16 @@ begin
   Result := FUser;
 end;
 
-function TConexao.EndParams: iConexao;
+function TConexao.EndParams: T;
 begin
   Result := self;
+  FConexao.Catalog := FCatalog;
+  FConexao.Database := FDataBase;
+  FConexao.HostName := FHostName;
+  FConexao.Password := FPassWord;
+  FConexao.Port := FPort;
+  FConexao.Protocol := FProtocol;
+  FConexao.User := FUser;
 end;
 
 end.

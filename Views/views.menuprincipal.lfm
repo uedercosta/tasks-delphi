@@ -7,6 +7,7 @@ object Form1: TForm1
   ClientHeight = 388
   ClientWidth = 320
   Menu = MainMenu1
+  OnCreate = FormCreate
   LCLVersion = '2.2.0.4'
   object Button1: TButton
     Left = 16
@@ -17,26 +18,15 @@ object Form1: TForm1
     OnClick = Button1Click
     TabOrder = 0
   end
-  object ZConnection1: TZConnection
-    ControlsCodePage = cCP_UTF8
-    AutoEncodeStrings = True
-    Catalog = 'public'
-    Properties.Strings = (
-      'AutoEncodeStrings=True'
-      'controls_cp=CP_UTF8'
-    )
-    Connected = True
-    AfterConnect = ZConnection1AfterConnect
-    SQLHourGlass = True
-    HostName = 'localhost'
-    Port = 5432
-    Database = 'db_tasks'
-    User = 'postgres'
-    Password = '1234'
-    Protocol = 'postgresql'
-    LibraryLocation = 'C:\Program Files (x86)\PostgreSQL\10\bin\libpq.dll'
-    Left = 29
-    Top = 48
+  object DBGrid1: TDBGrid
+    Left = 10
+    Height = 165
+    Top = 147
+    Width = 304
+    Color = clWindow
+    Columns = <>
+    DataSource = DataSource1
+    TabOrder = 1
   end
   object MainMenu1: TMainMenu
     Left = 256
@@ -71,10 +61,13 @@ object Form1: TForm1
       Caption = '&Sair'
     end
   end
+  object DataSource1: TDataSource
+    Left = 22
+    Top = 67
+  end
   object ZQuery1: TZQuery
-    Connection = ZConnection1
     Params = <>
-    Left = 29
-    Top = 107
+    Left = 112
+    Top = 40
   end
 end

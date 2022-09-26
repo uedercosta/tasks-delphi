@@ -17,7 +17,8 @@ type
     function Commit: iConexao;
     function RollBack: iConexao;
     function AddParams: iConexaoConfig;
-    function EndConexao: iConexao;
+    function EndConexao: TComponent;
+
   end;
 
   iConexaoConfig = interface

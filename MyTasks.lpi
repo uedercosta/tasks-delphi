@@ -44,6 +44,7 @@
         <Filename Value="Views\views.menuprincipal.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Form1"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Views.MenuPrincipal"/>
       </Unit>
@@ -82,6 +83,26 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="Models.Query"/>
       </Unit>
+      <Unit>
+        <Filename Value="Util\utils.util.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Utils.Util"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Factorys\factory.conexao.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Factory.Conexao"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Factorys\factory.query.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Factory.Query"/>
+      </Unit>
+      <Unit>
+        <Filename Value="DAOs\dao.usuario.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="DAO.Usuario"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -92,12 +113,13 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="Views;Interfaces;Models\Conexao;Views\Cadastros;Models\Entidades;Models\Query"/>
+      <OtherUnitFiles Value="Views;Interfaces;Models\Conexao;Views\Cadastros;Models\Entidades;Models\Query;Util;Factorys;DAOs"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>
       <Debugging>
         <DebugInfoType Value="dsDwarf2Set"/>
+        <UseHeaptrc Value="True"/>
       </Debugging>
       <Options>
         <Win32>
